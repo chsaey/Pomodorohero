@@ -1,0 +1,145 @@
+body {
+    background-color: tomato;
+    font-family: 'Alata', sans-serif;
+}
+.panel-body {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 0px 0px 15px 15px;
+    min-height: 75%;
+    max-height: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    overflow: auto;
+}
+.timer{
+    text-align: center;
+}
+.panel-title {
+    background-color: rgba(255, 255, 255, 0.562);
+    text-align: center;
+    border-radius: 15px 15px 0px 0px;
+}
+.navbar{
+    margin-bottom: 50px;
+}
+
+.btn{
+    Width: 8em;
+    background-color:  rgba(255, 226, 210, 0.336);   
+    margin: 15px;
+}
+.task{
+    background-color: rgba(255, 226, 210, 0.336);
+    border-left-style: solid;
+    border-radius: 5px;
+    margin: 5px;
+}
+.container-sm{
+    min-height: 318px;
+    max-height: 318px;
+}
+.text{
+    min-height: 30px;
+    max-height: 30px;
+    padding-top: 2px;
+    overflow: auto;
+    word-break: break-word;
+}
+.task:hover{
+    background-color: white;
+}
+.btn:hover{
+    background-color: white;
+}
+.notes{
+    position: fixed;
+    left: 0;
+    top: 25%;
+    color: black;
+    float: left;
+    height: 250px;
+    width: 35px;
+    background-color: rgba(187, 187, 187, 0.315);
+    border-radius: 10%;    
+}
+.notes:hover{
+    background-color: tomato;
+    border: none;
+    color: white; 
+    font-size: 16px;  
+    opacity: 0.6;
+    transition: 0.3s;
+    opacity: 1;
+}
+
+
+.footer {
+ 
+    top: 90%;
+    width: 25%;
+    color: black;
+    text-align: left;
+ }
+
+input{
+    resize: none;
+    height:38px; 
+    min-height:38px;  
+    max-height:38px;
+    width: 100%;
+
+}
+
+#timer{
+    padding: 15px;
+    font-size: 64pt;  
+}
+
+#delete{
+    color: rgba(0, 0, 0, 0.397)
+}
+
+textarea{
+    width:100%;
+    height:800px;
+    max-height:100%;
+    resize: none;
+    border-radius: 1%;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;   
+background-color: rgb(32, 32, 32);
+border-color:rgb(32, 32, 32) ;
+color:white;
+}
+
+
+
+
+
+/*Slide modal*/
+@media (max-width: 576px) {
+    .modal-dialog.modal-dialog-slideout {
+        width: 80%;
+        background-color: rgb(32, 32, 32);
+    }
+}
+.modal-dialog-slideout {
+    min-height: 100%;
+    margin: 0 auto 0 0;
+    background-color: rgb(32, 32, 32);
+}
+.modal.fade .modal-dialog.modal-dialog-slideout {
+    -webkit-transform: translate(-100%, 0);
+    transform: translate(-100%, 0);
+}
+
+.modal.fade.show .modal-dialog.modal-dialog-slideout {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    flex-flow: column;
+}
+
+.modal-dialog-slideout .modal-content {
+    border: 0;
+}

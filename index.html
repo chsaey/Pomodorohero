@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+    <script src="https://use.fontawesome.com/7deffc4dbb.js"></script>
+
+    <title>Pomodoro!</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="navbar-collapse collapse">
+        </div>
+        <a class="navbar-brand mx-auto">Pomodoro!</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarText">
+            <ul class="navbar-nav ml-auto ">
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#exampleModalLong">About</a>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
+    <!--Timer-->
+    <div class="container-sm">
+
+        <div class="row">
+            <div class="col-sm">
+                <div class="panel-title ">Timer</div>
+                <div class="panel-body timer">
+                    <button type="button" id="pomodoro" class="btn">Pomodoro</button>
+                    <button type="button" id="break" class="btn">Short Break</button>
+                    <button type="button" id="longBreak" class="btn">Long Break</button>
+                    </br>
+                    <div id="timer">
+                        25:00
+                    </div>
+                    <div id="counter">Finished: 0 </div>
+                    <div class="controls">
+                        <button type="button" id="start" class="btn">Start</button>
+                        <button type="button" id="pause" class="btn">Pause</button>
+                    </div>
+                </div>
+                <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
+                    class="btn">Customize</button>
+            </div>
+
+            <!--Tasks-->
+            <div class="col-sm">
+                <div class="panel-title">
+                    Tasks
+                </div>
+                <div class="panel-body container-sm" id="task-list">
+
+                </div>
+                <button type="button" id="add-task" class="btn">Add Task</button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="notes" data-toggle="modal" data-target="#exampleModal3">
+        <div style="transform: rotate(-90deg); top:100px; right:8px; position: relative;">Notes</div>
+
+    </div>
+
+
+
+
+    <!--Notes-->
+    <div class="modal fade" id="exampleModal3" data-backdrop="false" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel3" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-slideout" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:rgb(32, 32, 32);">
+                    <h5 class="modal-title" id="exampleModalLabel" style="text-align: center; color: white;">Notes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="color:white;">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background-color: rgb(32, 32, 32);">
+                    <textarea></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Customize Time -->
+    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="exampleModalCenter" tabindex="-1"
+        role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Customize Timers (Minutes)</h5>
+                    <button type="button" class="close" onClick="revertTime()" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id=timeForm>
+                        <div class="row">
+                            <div class="col-sm"><label>Pomodoro Time</label>
+                                </br>
+                                <input type="number" id="pomotime" name="pomotime" min="1" max="999" value="25">
+                            </div>
+                            <div class="col-sm"><label>Short Break</label>
+                                </br>
+                                <input type="number" id="shorttime" name="shorttime" min="1" max="999" value="5">
+                            </div>
+                            <div class="col-sm"><label>Long Break</label>
+                                </br>
+                                <input type="number" id="longtime" name="longtime" min="1" max="999" value="15">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal" onClick="revertTime()">Cancel</button>
+                    <button type="button" class="btn" data-dismiss="modal" onClick="defaultTime()">Default</button>
+                    <button type="button" class="btn" data-dismiss="modal" onClick="customizeTime()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--About-->
+
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">What is it?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late
+                    1980s. The technique uses a timer to break down work into intervals, traditionally 25 minutes in
+                    length, separated by short breaks. Each interval is known as a pomodoro, from the Italian word for
+                    'tomato', after the tomato-shaped kitchen timer that Cirillo used as a university student.
+                    </br></br>
+                    Typically, users will do four 25-minute Pomodoros separted by short breaks consisting of 5 minutes.
+                    After completing four pomodoros, users will take a longer 15 minute break
+                    </br></br>
+                    Feel free to customize the timers to fit your style!
+                    </br></br>
+                    Note: there will be a sound played once the timer reaches 0.
+                </div>
+                <div class="modal-footer">
+
+                    <div class="col-sm">Made By: Charles Saeyang</div>
+                    <div class="col-sm">Audio from ZapSplat</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <script>
+        document.getElementById("pomodoro").addEventListener("click", pomodoro)
+        document.getElementById("break").addEventListener("click", shortBreak)
+        document.getElementById("longBreak").addEventListener("click", longBreak)
+
+
+        document.getElementById("start").addEventListener("click", start)
+        document.getElementById("pause").addEventListener("click", pause)
+        document.getElementById("add-task").addEventListener("click", addTask)
+
+
+        var pomo = 25 * 60;
+        var short = 5 * 60
+        var long = 15 * 60;
+
+        var isPomo = true;
+        var play = false;
+        var time = pomo;
+        var finished = 0;
+        var taskNum = 0;
+        var myInterval;
+        var audio = new Audio("./Fixedbell.mp3");
+        audio.volume = .5;
+
+        function pomodoro() {
+            document.getElementById("timer").innerHTML = `${pomo}:00`;
+            time = pomo * 60
+            isPomo = true;
+            pause();
+        }
+        function shortBreak() {
+            document.getElementById("timer").innerHTML = `${short}:00`;
+            time = short * 60
+            isPomo = false;
+            pause();
+        }
+        function longBreak() {
+            document.getElementById("timer").innerHTML = `${long}:00`;
+            time = long * 60
+            isPomo = false;
+            pause();
+        }
+
+        function start() {
+            if (play == false && time > 0) {
+                play = true;
+                myInterval = setInterval(function () {
+                    if (time == 0) { pause(); playAudio(); finish(); }
+                    else {
+                        time--;
+                        document.title = "Time Left: " + Math.floor(time / 60) + ':' + time % 60;
+                        document.getElementById("timer").innerHTML = Math.floor(time / 60) + ':' + time % 60;
+                    }
+                }
+                    , 1000);
+            }
+        }
+
+        function pause() {
+            if (play == true) {
+                clearInterval(myInterval);
+                play = false;
+            }
+        }
+
+        function playAudio() {
+            audio.play();
+        }
+        function finish() {
+            if (isPomo) {
+                finished += 1;
+                document.getElementById("counter").innerHTML = `Finished: ${finished}`
+            }
+        }
+        function addTask() {
+            taskNum++;
+            const newTask =
+                `<div class="row task " id="${taskNum}">` +
+                '<div contenteditable="true" class="col-11 text "></div>' +
+                `<div class="col-1"><i class="fa fa-trash" onClick="deleteTask(${taskNum})"></i></div>` +
+                '</div>'
+
+            document.getElementById("task-list").innerHTML += newTask;
+
+        }
+        function deleteTask(num) {
+
+            var obj = document.getElementById(num);
+            obj.remove();
+        }
+
+        function customizeTime() {
+            this.pomo = document.getElementById("pomotime").value;
+            this.short = document.getElementById("shorttime").value;
+            this.long = document.getElementById("longtime").value;
+
+        }
+
+        function revertTime() {
+            document.getElementById("pomotime").value = this.pomo;
+            document.getElementById("shorttime").value = this.short;
+            document.getElementById("longtime").value = this.long;
+        }
+
+        function defaultTime() {
+            this.pomo = 25;
+            this.short = 5;
+            this.long = 15;
+            document.getElementById("pomotime").value = this.pomo;
+            document.getElementById("shorttime").value = this.short;
+            document.getElementById("longtime").value = this.long;
+        }
+
+    </script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
