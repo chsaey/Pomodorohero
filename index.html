@@ -190,9 +190,9 @@
         document.getElementById("add-task").addEventListener("click", addTask)
 
 
-        var pomo = 25 * 60;
-        var short = 5 * 60
-        var long = 15 * 60;
+        var pomo = 25;
+        var short = 5
+        var long = 15;
 
         var isPomo = true;
         var play = false;
@@ -205,19 +205,19 @@
 
         function pomodoro() {
             document.getElementById("timer").innerHTML = `${pomo}:00`;
-            time = pomo * 60
+            time = pomo*60
             isPomo = true;
             pause();
         }
         function shortBreak() {
             document.getElementById("timer").innerHTML = `${short}:00`;
-            time = short * 60
+            time = short*60
             isPomo = false;
             pause();
         }
         function longBreak() {
             document.getElementById("timer").innerHTML = `${long}:00`;
-            time = long * 60
+            time = long *60
             isPomo = false;
             pause();
         }
